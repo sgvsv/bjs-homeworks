@@ -27,10 +27,10 @@ function memorize(fn, limit) {
             return call.result;
 
         const result = fn(...args);
-        memory.push({args, result});
-        if (memory.length > memoryLimit) {
+        if (memory.length === memoryLimit) {
             memory.shift();
         }
+        memory.push({args, result});
         return result;
 
     }
