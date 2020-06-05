@@ -20,15 +20,19 @@ function compareArrays(ar1, ar2) {
 
 function memorize(fn, limit) {
     const memory = [];
+    const memoryLimit = limit;
     return function (...args) {
         let call = memory.find(call => compareArrays(call.args, args));
-        if (call) {
+        if (call)
             return call.result;
-        } else {
-            const result = fn(...args);
-            memory.push({args: args, result: result});
-            return fn(...args);
+
+        const result = fn(...args);
+        memory.push({args, result});
+        if (memory.length > memoryLimit) {
+            memory.shift();
         }
+        return result;
+
     }
 }
 
