@@ -15,7 +15,7 @@ function sum(...args) {
 
 
 function compareArrays(ar1, ar2) {
-    return ar1.every((value, index) => ar2[index] === value) && (ar1.length === ar2.length);
+    return (ar1.length === ar2.length) && ar1.every((value, index) => ar2[index] === value);
 }
 
 function memorize(fn, limit) {
